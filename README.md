@@ -1,4 +1,4 @@
-# DistMM
+# DistMM [![Build Status](https://travis-ci.org/blasterbug/DistMM.svg)](https://travis-ci.org/blasterbug/DistMM)
 
 another job for [Umu].  
 
