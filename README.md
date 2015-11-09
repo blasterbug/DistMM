@@ -2,7 +2,7 @@
 
 another job for [Umu].  
 
-A distributed message management system where (using a web service interface / API) developers are able to store, list, and retrieve messages.
+A Distributed Message Management system where (using a web service interface / API) users are able to store, list, and retrieve messages.
 
 
 
