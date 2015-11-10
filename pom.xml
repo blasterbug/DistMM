@@ -36,6 +36,28 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>se.umu.cs._5dv153.interfaces</groupId>
+                            <artifactId>interfaces</artifactId>
+                            <version>1.0</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/lib/interfaces.jar</file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
         </plugins>
     </build>
     <dependencies>
@@ -50,11 +72,17 @@
             <artifactId>org.restlet</artifactId>
             <version>2.2-RC4</version>
         </dependency>
-        <!--
         <dependency>
-            <groupId>se.umu.cs._5dv153</groupId>
-            <artifactId>interfaces</artifactId>
+            <groupId>se.umu.cs._5dv153.interfaces</groupId>
+            <artifactId>se.umu.cs._5dv153.interfaces</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/interfaces.jar</systemPath>
         </dependency>
-        -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.0.4</version>
+        </dependency>
     </dependencies>
 </project>
