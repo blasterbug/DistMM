@@ -13,10 +13,25 @@ public class Storage implements MessageAccessor
   private HashMap<String, Message> messages;
   private HashSet<String> topics;
 
-  public Storage ()
+  private static Storage storage;
+
+  // Singleton -> Private constructor
+  private Storage ()
   {
     messages = new HashMap<>();
     topics = new HashSet<>();
+  }
+
+  /**
+   * Get the instance of the storage
+   *
+   * @return Instance of the storage object
+   */
+  public static Storage getInstance ()
+  {
+    if ( null == storage )
+      storage = new Storage();
+    return storage;
   }
 
   /**
@@ -39,6 +54,7 @@ public class Storage implements MessageAccessor
   public void postMessage ( Message message )
   {
     messages.put( message.getId(), message );
+    topics.add( message.getTopic() );
   }
 
   /**
@@ -52,7 +68,7 @@ public class Storage implements MessageAccessor
   public List<String> listMessages ( String topic )
   {
     LinkedList<String> identifiers = new LinkedList<>();
-    for( Message msg : messages.values())
+    for ( Message msg : messages.values() )
     {
       if ( msg.getTopic().equals( topic ) )
         identifiers.add( msg.getId() );
@@ -71,7 +87,7 @@ public class Storage implements MessageAccessor
   public Map<String, Long> listMessagesWithTimestamps ( String topic )
   {
     HashMap<String, Long> identifiers = new HashMap<>();
-    for( Message msg : messages.values())
+    for ( Message msg : messages.values() )
     {
       if ( msg.getTopic().equals( topic ) )
         identifiers.put( msg.getId(), msg.getTimestamp() );

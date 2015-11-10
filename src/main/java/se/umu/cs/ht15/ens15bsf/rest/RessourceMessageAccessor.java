@@ -1,6 +1,9 @@
 package se.umu.cs.ht15.ens15bsf.rest;
 
 import org.restlet.resource.*;
+import se.umu.cs._5dv153.interfaces.Message;
+
+import static se.umu.cs.ht15.ens15bsf.rest.ServerKeywords.*;
 
 /**
  * Created by ens15bsf on 2015-11-09.
@@ -10,8 +13,36 @@ public class RessourceMessageAccessor extends ServerResource
   @Get
   public String read ()
   {
-    String argData = getQueryValue( "data" );
-    return "Hello\n" + argData + "\n";
+    String reply = "";
+    String argData = getQueryValue( GET );
+    if ( null != argData )
+    {
+      Storage messages = Storage.getInstance();
+      // get list of topics
+      if ( argData.equals( TOPICS ) )
+        reply = JsonAgent.toJson( messages.listTopics() ).toString();
+      // messages list for a topic
+      else if ( argData.equals( MESSAGES ) )
+      {
+        String topic = getQueryValue( TOPIC_NAME );
+        reply = JsonAgent.toJson( messages.listMessages( topic ) ).toString();
+      }
+      else if ( argData.equals( MESSAGE ) )
+      {
+        String id = getQueryValue( MESSAGE_ID );
+        reply = JsonAgent.toJson( messages.retrieveMessage( id ) ).toString();
+      }
+      else if ( argData.equals( MESSAGES_WITH_TIMESTAMPS ) )
+      {
+        String topic = getQueryValue( TOPIC );
+        reply = JsonAgent.toJson( messages.listMessagesWithTimestamps( topic ) ).toString();
+      }
+      else
+      {
+        reply += "Unkwon requery";
+      }
+    }
+    return reply;
   }
 
   @Put
@@ -23,7 +54,10 @@ public class RessourceMessageAccessor extends ServerResource
   @Post
   public String Create ( String arg )
   {
-    return "create!\n" + arg + "\n";
+    String reply = "OK";
+    Message newMsg = JsonAgent.readMessage( arg );
+    Storage.getInstance().postMessage( newMsg );
+    return reply;
   }
 
   @Delete
