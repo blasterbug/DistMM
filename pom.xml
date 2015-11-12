@@ -55,7 +55,9 @@
                         </goals>
                         <configuration>
                             <packageName>se.umu.cs.ht15.ens15bsf.soap</packageName>
+                            <!--
                             <wsdlFile>src/main/wsdl/MessageAccessorService.wsdl</wsdlFile>
+                            -->
                             <databindingName>xmlbeans</databindingName>
                         </configuration>
                     </execution>
