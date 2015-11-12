@@ -1,5 +1,8 @@
 package se.umu.cs.ht15.ens15bsf.rest;
 
+import se.umu.cs.ht15.ens15bsf.Storage;
+
+
 import org.restlet.resource.*;
 import se.umu.cs._5dv153.interfaces.Message;
 

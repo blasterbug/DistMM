@@ -1,7 +1,7 @@
-package se.umu.cs.ht15.ens15bsf.rest;
-
-import se.umu.cs._5dv153.interfaces.Message;
+package se.umu.cs.ht15.ens15bsf;
+        
 import se.umu.cs._5dv153.interfaces.MessageAccessor;
+import se.umu.cs._5dv153.interfaces.Message;
 
 import java.util.*;
 
