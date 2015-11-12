@@ -34,12 +34,12 @@ public class RessourceMessageAccessor extends ServerResource
       }
       else if ( argData.equals( MESSAGES_WITH_TIMESTAMPS ) )
       {
-        String topic = getQueryValue( TOPIC );
+        String topic = getQueryValue( TOPIC_NAME );
         reply = JsonAgent.toJson( messages.listMessagesWithTimestamps( topic ) ).toString();
       }
       else
       {
-        reply += "Unkwon requery";
+        reply = "Unknown request";
       }
     }
     return reply;

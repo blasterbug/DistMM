@@ -36,6 +36,13 @@ public class RestClient extends ClientResource
     return get().getText();
   }
 
+  public String getMessagesWithTimeStamps( String topic ) throws IOException
+  {
+    setQueryValue( GET, MESSAGES_WITH_TIMESTAMPS );
+    addQueryParameter( TOPIC_NAME, topic );
+    return get().getText();
+  }
+
   public String getMessage ( String id ) throws IOException
   {
     setQueryValue( GET, MESSAGE );
@@ -43,7 +50,6 @@ public class RestClient extends ClientResource
     return get().getText();
   }
 
- // public String postMessage( String id, String sender, String topic, long time, String content ) throws IOException
   public String postMessage( Message msg ) throws IOException
   {
     setQueryValue( POST, MESSAGE );

@@ -16,6 +16,16 @@ public class TestClient
     System.out.println( client.getTopics() );
     System.out.println( client.getMessages( "Jedi" ));
     System.out.println( client.getMessage( "0" ) );
-    System.out.println( client.postMessage( new Message( "100", "DarkVador", "Sith", new Date().getTime() , "Obi-Wan once thought as you do. You don't know the power of the Dark Side, I must obey my master." ) ));
+    // Message(String id, String sender, String topic, Long timestamp, String content)
+    client.postMessage(
+      new Message(
+        "100",
+        "DarkVador",
+        "Sith",
+        new Date().getTime() ,
+        "Obi-Wan once thought as you do. You don't know the power of the Dark Side, I must obey my master."
+      )
+    );
+    System.out.println( client.getMessagesWithTimeStamps( "Jedi" ));
   }
 }

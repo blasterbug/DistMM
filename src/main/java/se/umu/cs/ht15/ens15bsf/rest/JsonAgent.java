@@ -92,13 +92,13 @@ public class JsonAgent
     JsonReader jsonReader = Json.createReader( new StringReader( arg ));
     JsonObject msgValues = jsonReader.readObject();
     jsonReader.close();
-    // Message(String id, String sender, String topic, Long timestamp, String content)
-    return new Message(
-            msgValues.getString( ID ),
-            msgValues.getString( SENDER ),
-            msgValues.getString( TOPIC ),
-            Long.getLong( msgValues.getString( TIMESTAMP ) ),
-            msgValues.getString( CONTENT )
+    return
+      new Message(
+        msgValues.getString( ID ),
+        msgValues.getString( SENDER ),
+        msgValues.getString( TOPIC ),
+        msgValues.getJsonNumber( TIMESTAMP ).longValue(),
+        msgValues.getString( CONTENT )
       );
   }
 }
