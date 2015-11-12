@@ -49,7 +49,7 @@
                     <xsd:attribute type="xsd:string" name="messageTopic"/>
                     <xsd:attribute type="xsd:long" name="messageTimestamp"/>
                     <xsd:attribute type="xsd:string" name="messageContent"/>
-                    <xsd:attribute type="tns:arrayOfByte" name="messageAttachment"/>
+                    <xsd:attribute type="xsd:base64Binary" name="messageAttachements"/>
                 </xsd:complexType>
             </xsd:element>
 
@@ -205,7 +205,7 @@
 
     <!-- services -->
     <wsdl:service name="MessageAccessorService">
-        <wsdl:port binding="MessageAccessorInterface" name="MessageAccessorServiceSOAP">
+        <wsdl:port binding="ns:MessageAccessorHTTPBinding" name="MessageAccessorServiceSOAP">
             <soap:address
                     location="http://localhost:8080/axis2/services/MessageAccessor"/>
         </wsdl:port>
