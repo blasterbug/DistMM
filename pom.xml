@@ -44,6 +44,22 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsdl2code</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>se.umu.cs.ht15.ens15bsf.soap</packageName>
+                            <wsdlFile>src/main/wsdl/MessageAccessorService.wsdl</wsdlFile>
+                            <databindingName>xmlbeans</databindingName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -57,6 +73,11 @@
             <groupId>org.restlet.jse</groupId>
             <artifactId>org.restlet</artifactId>
             <version>2.2-RC4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2</artifactId>
+            <version>1.6.3</version>
         </dependency>
         <dependency>
             <groupId>se.umu.cs._5dv153.interfaces</groupId>
