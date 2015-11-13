@@ -15,12 +15,12 @@ public class MessageAccessorService implements MessageAccessorServiceSkeletonInt
   /**
    * Auto generated method signature
    *
-   * @param stringInput
+   * @param messageID
    */
   @Override
-  public MessageObjectDocument retrieveMessage ( StringInputDocument stringInput )
+  public MessageObjectDocument retrieveMessage ( StringInputDocument messageID )
   {
-    Message msg = Storage.getInstance().retrieveMessage( stringInput.getStringInput() );
+    Message msg = Storage.getInstance().retrieveMessage( messageID.getStringInput() );
     MessageObjectDocument response = MessageObjectDocument.Factory.newInstance();
     MessageObjectDocument.MessageObject msgDoc = MessageObjectDocument.MessageObject.Factory.newInstance();
     msgDoc.setMessageID( msg.getId() );
@@ -78,25 +78,37 @@ public class MessageAccessorService implements MessageAccessorServiceSkeletonInt
 
   /**
    * Auto generated method signature
-   *
-   * @param stringInput2
    */
   @Override
-  public ListOfStringDocument postMessage ( StringInputDocument stringInput2 )
+  public void postMessage ( MessageObjectDocument message )
   {
-    return ListOfStringDocument.Factory.newInstance();
+    MessageObjectDocument.MessageObject msgObject = message.getMessageObject();
+    byte[] attchb = msgObject.getMessageAttachements();
+    Byte[] attchByte = new Byte[attchb.length];
+    for ( int i = 0 ; i < attchByte.length ; i++ )
+      attchByte[i] = attchb[i];
+    //	public Message(String id, String sender, String topic, Long timestamp, String content) {
+    Message newMessage = new Message(
+            msgObject.getMessageID(),
+            msgObject.getMessageSender(),
+            msgObject.getMessageTopic(),
+            msgObject.getMessageTimestamp(),
+            msgObject.getMessageContent(),
+            attchByte
+    );
+    Storage.getInstance().postMessage( newMessage );
   }
 
   /**
    * Auto generated method signature
    *
-   * @param topic
+   * @param topicName
    */
   @Override
-  public ListOfStringDocument listMessages ( StringInputDocument topic )
+  public ListOfStringDocument listMessages ( StringInputDocument topicName )
   {
     ListOfStringDocument response = ListOfStringDocument.Factory.newInstance();
-    List<String> listMsg = Storage.getInstance().listMessages( topic.getStringInput() );
+    List<String> listMsg = Storage.getInstance().listMessages( topicName.getStringInput() );
     for ( String id : listMsg )
       response.getListOfString().add( id );
     return response;
