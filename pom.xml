@@ -82,6 +82,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-ant-plugin</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+
+        <dependency>
             <groupId>se.umu.cs._5dv153.interfaces</groupId>
             <artifactId>se.umu.cs._5dv153.interfaces</artifactId>
             <version>1.0</version>
@@ -92,7 +98,7 @@
     </dependencies>
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -142,6 +148,15 @@
                 <groupId>org.apache.axis2</groupId>
                 <artifactId>axis2-ant-plugin</artifactId>
                 <version>1.6.3</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-aar-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <configuration>
+                    <outputDirectory>${env.AXIS2_HOME}/repository/services/</outputDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
