@@ -84,7 +84,7 @@ public class Storage implements MessageAccessor
    * @return Map of messages' identifiers and timestamps, null if there are no
    */
   @Override
-  public Map<String, Long> listMessagesWithTimestamps ( String topic )
+  public HashMap<String, Long> listMessagesWithTimestamps ( String topic )
   {
     HashMap<String, Long> identifiers = new HashMap<>();
     for ( Message msg : messages.values() )
