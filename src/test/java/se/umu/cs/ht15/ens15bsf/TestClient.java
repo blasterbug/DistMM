@@ -14,18 +14,18 @@ public class TestClient
   {
     RestClient client = new RestClient( "http://localhost:" + RestServer.PORT + "/" );
     System.out.println( client.getTopics() );
-    System.out.println( client.getMessages( "Jedi" ));
+    System.out.println( client.getMessages( "Jedi" ) );
     System.out.println( client.getMessage( "0" ) );
     // Message(String id, String sender, String topic, Long timestamp, String content)
     client.postMessage(
-      new Message(
-        "100",
-        "DarkVador",
-        "Sith",
-        new Date().getTime() ,
-        "Obi-Wan once thought as you do. You don't know the power of the Dark Side, I must obey my master."
-      )
+            new Message(
+                    "100",
+                    "DarkVador",
+                    "Sith",
+                    new Date().getTime(),
+                    "Obi-Wan once thought as you do. You don't know the power of the Dark Side, I must obey my master."
+            )
     );
-    System.out.println( client.getMessagesWithTimeStamps( "Jedi" ));
+    System.out.println( client.getMessagesWithTimeStamps( "Jedi" ) );
   }
 }

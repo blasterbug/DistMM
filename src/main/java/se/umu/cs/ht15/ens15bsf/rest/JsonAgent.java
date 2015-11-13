@@ -84,22 +84,23 @@ public class JsonAgent
 
   /**
    * Parse a json message collection to create a Message
+   *
    * @param arg json collection
    * @return Message
    */
   public static Message readMessage ( String arg )
   {
-    JsonReader jsonReader = Json.createReader( new StringReader( arg ));
+    JsonReader jsonReader = Json.createReader( new StringReader( arg ) );
     JsonObject msgValues = jsonReader.readObject();
     jsonReader.close();
     return
-      new Message(
-        msgValues.getString( ID ),
-        msgValues.getString( SENDER ),
-        msgValues.getString( TOPIC ),
-        msgValues.getJsonNumber( TIMESTAMP ).longValue(),
-        msgValues.getString( CONTENT )
-      );
+            new Message(
+                    msgValues.getString( ID ),
+                    msgValues.getString( SENDER ),
+                    msgValues.getString( TOPIC ),
+                    msgValues.getJsonNumber( TIMESTAMP ).longValue(),
+                    msgValues.getString( CONTENT )
+            );
   }
 }
 

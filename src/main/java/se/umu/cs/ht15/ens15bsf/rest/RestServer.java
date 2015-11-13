@@ -10,12 +10,12 @@ public class RestServer extends Server
 {
   public static final int PORT = 4040;
 
-  public RestServer()
+  public RestServer ()
   {
     super( Protocol.HTTP, PORT, RessourceMessageAccessor.class );
   }
 
-  public RestServer( int port )
+  public RestServer ( int port )
   {
     super( Protocol.HTTP, port, RessourceMessageAccessor.class );
   }

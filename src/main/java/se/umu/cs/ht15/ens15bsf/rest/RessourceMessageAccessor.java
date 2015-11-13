@@ -1,10 +1,8 @@
 package se.umu.cs.ht15.ens15bsf.rest;
 
-import se.umu.cs.ht15.ens15bsf.Storage;
-
-
 import org.restlet.resource.*;
 import se.umu.cs._5dv153.interfaces.Message;
+import se.umu.cs.ht15.ens15bsf.Storage;
 
 import static se.umu.cs.ht15.ens15bsf.rest.ServerKeywords.*;
 
@@ -24,7 +22,7 @@ public class RessourceMessageAccessor extends ServerResource
       // get list of topics
       if ( argData.equals( TOPICS ) )
         reply = JsonAgent.toJson( messages.listTopics() ).toString();
-      // messages list for a topic
+        // messages list for a topic
       else if ( argData.equals( MESSAGES ) )
       {
         String topic = getQueryValue( TOPIC_NAME );

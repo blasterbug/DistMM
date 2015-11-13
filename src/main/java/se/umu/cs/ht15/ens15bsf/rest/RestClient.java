@@ -29,14 +29,14 @@ public class RestClient extends ClientResource
     return get().getText();
   }
 
-  public String getMessages( String topic ) throws IOException
+  public String getMessages ( String topic ) throws IOException
   {
     setQueryValue( GET, MESSAGES );
     addQueryParameter( TOPIC_NAME, topic );
     return get().getText();
   }
 
-  public String getMessagesWithTimeStamps( String topic ) throws IOException
+  public String getMessagesWithTimeStamps ( String topic ) throws IOException
   {
     setQueryValue( GET, MESSAGES_WITH_TIMESTAMPS );
     addQueryParameter( TOPIC_NAME, topic );
@@ -50,15 +50,15 @@ public class RestClient extends ClientResource
     return get().getText();
   }
 
-  public String postMessage( Message msg ) throws IOException
+  public String postMessage ( Message msg ) throws IOException
   {
     setQueryValue( POST, MESSAGE );
     /**
-    addQueryParameter( MESSAGE_ID, id );
-    addQueryParameter( MSG_SENDER, sender );
-    addQueryParameter( TOPIC_NAME, topic );
-    addQueryParameter( MSG_CONTENT, content );
-    addQueryParameter( MSG_TIME, time );
+     addQueryParameter( MESSAGE_ID, id );
+     addQueryParameter( MSG_SENDER, sender );
+     addQueryParameter( TOPIC_NAME, topic );
+     addQueryParameter( MSG_CONTENT, content );
+     addQueryParameter( MSG_TIME, time );
      **/
     String msgJson = JsonAgent.toJson( msg ).toString();
     return post( msgJson ).getText();

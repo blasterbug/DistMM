@@ -1,6 +1,8 @@
-package se.umu.cs.ht15.ens15bsf.rest;
+package se.umu.cs.ht15.ens15bsf;
 
 import se.umu.cs._5dv153.interfaces.Message;
+import se.umu.cs.ht15.ens15bsf.Storage;
+import se.umu.cs.ht15.ens15bsf.rest.RestServer;
 
 import java.util.Date;
 

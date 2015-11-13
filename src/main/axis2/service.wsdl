@@ -15,31 +15,29 @@
             <xsd:element name="stringInput" type="xsd:string"/>
 
             <!-- List of string for outputs -->
-            <xsd:complexType name="listString">
-                <xsd:sequence>
-                    <xsd:element name="item" type="xsd:string" maxOccurs="unbounded" minOccurs="0" nillable="false"/>
-                </xsd:sequence>
-            </xsd:complexType>
+            <xsd:element name="listOfString">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:string"></xsd:list>
+                </xsd:simpleType>
+            </xsd:element>
 
             <!-- Map messages ID = timestamps -->
-            <!--
-            <xsd:element name="messageIDsWithTimestamps">
-             -->
-            <xsd:complexType name="map">
-                <xsd:sequence>
-                    <xsd:element name="key" type="xsd:string"/>
-                    <xsd:element name="value" type="xsd:long"/>
-                </xsd:sequence>
-            </xsd:complexType>
-            <!--
+            <xsd:element name="map">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="key" type="xsd:string"/>
+                        <xsd:element name="value" type="xsd:long"/>
+                    </xsd:sequence>
+                </xsd:complexType>
             </xsd:element>
-             -->
 
-            <xsd:complexType name="arrayOfByte">
-                <xsd:sequence>
-                    <xsd:element name="item" type="xsd:byte" maxOccurs="4194303" minOccurs="0"/>
-                </xsd:sequence>
-            </xsd:complexType>
+            <xsd:element name="arrayOfByte">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="item" type="xsd:byte" maxOccurs="4194303" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
 
             <!-- Message as define in the interfaces.jar -->
             <xsd:element name="messageObject">
@@ -64,12 +62,12 @@
     </wsdl:message>
     <!-- response : list of messages -->
     <wsdl:message name="listMessagesResponse">
-        <wsdl:part name="listMessages" element="tns:listString"/>
+        <wsdl:part name="listMessages" element="tns:listOfString"/>
     </wsdl:message>
 
     <!-- request : list of messages with timestamps -->
     <wsdl:message name="listMessagesWithTimestampsRequest">
-        <wsdl:part name="topicName" element="tns:listString"/>
+        <wsdl:part name="topicName" element="tns:listOfString"/>
     </wsdl:message>
     <!-- response : list of messages with timestamps -->
     <wsdl:message name="listMessagesWithTimestampsResponse">
@@ -81,7 +79,7 @@
     </wsdl:message>
     <!-- response : list of topics -->
     <wsdl:message name="listTopicsResponse">
-        <wsdl:part name="listTopics" element="tns:listString"/>
+        <wsdl:part name="listTopics" element="tns:listOfString"/>
     </wsdl:message>
 
     <!-- request : post message -->
