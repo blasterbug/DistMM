@@ -6,6 +6,6 @@ notifications:
 language: java
 compiler: javac
 script:
-  mvn generate-sources &&
-  mvn axis2-wsdl2code:wsdl2code &&
-  mvn -e package
+  - mvn generate-sources &&
+  - mvn axis2-wsdl2code:wsdl2code &&
+  - mvn -e package
