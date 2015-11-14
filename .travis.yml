@@ -6,4 +6,4 @@ notifications:
 language: java
 compiler: javac
 before_script: mvn generate-sources
-script: Mvn -e package
+script: mvn -e package
