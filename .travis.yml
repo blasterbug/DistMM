@@ -5,7 +5,5 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
 language: java
 compiler: javac
-script:
-  - mvn generate-sources &&
-  - mvn axis2-wsdl2code:wsdl2code &&
-  - mvn -e package
+before_script: mvn generate-sources
+script: Mvn -e package
