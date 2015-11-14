@@ -6,70 +6,92 @@
 
 <project name="5dv153a1_ens15bsf" default="package" basedir=".">
 
-  <!-- ====================================================================== -->
-  <!-- Import maven-build.xml into the current project                        -->
-  <!-- ====================================================================== -->
+    <property environment="env"/>
 
-  <import file="maven-build.xml"/>
-  
-  <!-- ====================================================================== -->
-  <!-- Help target                                                            -->
-  <!-- ====================================================================== -->
+    <!-- ====================================================================== -->
+    <!-- Import maven-build.xml into the current project                        -->
+    <!-- ====================================================================== -->
 
-  <target name="help">
-    <echo message="Please run: $ant -projecthelp"/>
-  </target>
+    <import file="maven-build.xml"/>
 
-  <!-- init -->
-  <target name="init">
-    <tstamp/>
-    <mkdir dir="${maven.build.dir}"/>
-  </target>
+    <!-- ====================================================================== -->
+    <!-- Help target                                                            -->
+    <!-- ====================================================================== -->
 
-  <!-- dist -->
-  <target name="dist" depends="compile" description="generate distribution">
-    <mkdir dir="${maven.build.dir}"/>
-    <!-- service AAR -->
-    <copy todir="${maven.build.dir}/META-INF">
-      <fileset dir="${maven.build.resourceDir.0}">
-        <include name="services.xml"/>
-      </fileset>
-      <fileset dir="${maven.build.wsdl}">
-        <include name="service.wsdl"/>
-      </fileset>
-    </copy>
-    <jar jarfile="${maven.build.dir}" basedir="${.}"/>
-    <!-- cleanup -->
-    <delete dir="${maven.build.dir}"/>
-  </target>
+    <target name="help">
+        <echo message="Please run: $ant -projecthelp"/>
+    </target>
 
-  <!-- deploy -->
-  <target name="deploy" description="deploy service">
-    <!-- copy service archive to repository -->
-    <copy todir="${env.AXIS2_HOME}/repository/services">
-      <fileset dir="${maven.build.dir}">
-        <include name="${ant.project.name}.aar"/>
-      </fileset>
-    </copy>
-  </target>
+    <!-- init -->
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${maven.build.dir}"/>
+    </target>
 
-  <!-- undeploy -->
-  <target name="undeploy" description="undeploy service">
-    <!-- remove service archive from repository -->
-    <delete>
-      <fileset dir="${env.AXIS2_HOME}/repository/services">
-        <include name="${ant.project.name}.aar"/>
-      </fileset>
-    </delete>
-  </target>
 
-  <!-- clean -->
-  <target name="clean" description="clean up">
-    <delete dir="${maven.build.dir}"/>
-    <delete file="${maven.build.dir}/aar"/>
-    <delete>
-      <fileset dir="." includes="**/*.tmp"/>
-    </delete>
-  </target>
+    <target name="generate-resources" depends="get-deps">
+        <exec command="mvn axis2-wsdl2code:wsdl2code"/>
+        <exec command="mvn generate-resources"/>
+    </target>
+
+    <target name="generates-sources" depends="generate-resources">
+        <exec command="mvn generate-sources"/>
+    </target>
+
+    <!-- dist -->
+    <target name="dist" depends="generates-sources" description="generate distribution">
+        <mkdir dir="${maven.build.dir}"/>
+        <exec command="mvn package">
+        </exec>
+        <!-- service AAR -->
+        <copy todir="${maven.build.dir}/META-INF">
+            <fileset dir="${maven.build.resourceDir.0}">
+
+                <include name="services.xml"/>
+            </fileset>
+            <fileset dir="${maven.build.wsdl}">
+                <include name="service.wsdl"/>
+            </fileset>
+        </copy>
+        <jar jarfile="${maven.build.dir}" basedir="${.}"/>
+        <!-- cleanup -->
+        <delete dir="${maven.build.dir}"/>
+    </target>
+
+    <!-- deploy -->
+    <target name="aar" description="build aar service package">
+        <exec command="mvn axis2-aar:aar">
+        </exec>
+    </target>
+
+    <!-- deploy -->
+    <target name="deploy" depends="aar" description="deploy service">
+        <!-- copy service archive to repository -->
+        <copy todir="${env.AXIS2_HOME}/repository/services">
+            <fileset dir="${maven.build.dir}">
+                <include name="${ant.project.name}.aar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- undeploy -->
+    <target name="undeploy" description="undeploy service">
+        <!-- remove service archive from repository -->
+        <delete>
+            <fileset dir="${env.AXIS2_HOME}/repository/services">
+                <include name="${ant.project.name}.aar"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <!-- clean -->
+    <target name="clean" description="clean up">
+        <delete dir="${maven.build.dir}"/>
+        <delete file="${maven.build.dir}/aar"/>
+        <delete>
+            <fileset dir="." includes="**/*.tmp"/>
+        </delete>
+    </target>
 
 </project>
+

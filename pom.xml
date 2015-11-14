@@ -95,6 +95,12 @@
             <systemPath>${basedir}/lib/interfaces.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>org.xerial.maven</groupId>
+            <artifactId>maven-antlr-plugin</artifactId>
+            <version>1.9</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -126,6 +132,10 @@
                 <version>1.6.3</version>
                 <executions>
                     <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
                         <goals>
                             <goal>wsdl2code</goal>
                         </goals>
@@ -151,12 +161,67 @@
             </plugin>
 
             <plugin>
+                <groupId>org.xerial.maven</groupId>
+                <artifactId>maven-antlr-plugin</artifactId>
+                <version>1.9</version>
+                <configuration>
+                    <grammars>java.g</grammars>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.axis2</groupId>
                 <artifactId>axis2-aar-maven-plugin</artifactId>
                 <version>1.6.3</version>
                 <configuration>
-                    <outputDirectory>${env.AXIS2_HOME}/repository/services/</outputDirectory>
+                    <servicesXmlFile>${project.basedir}/target/aar/services.xml</servicesXmlFile>
+                    <aarName>5d157_ens15bsf_SOAP_service</aarName>
+                    <includeDependencies>true</includeDependencies>
+                    <fileSets>
+                        <fileSet>
+                            <directory>src/main/axis2</directory>
+                            <outputDirectory>META-INF</outputDirectory>
+                            <includes>
+                                <include>target/aar/services.xml</include>
+                                <include>**/*.xml</include>
+                                <include>**/*.xsd</include>
+                                <include>**/*.wsdl</include>
+                            </includes>
+                        </fileSet>
+                    </fileSets>
                 </configuration>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>aar</id>
+                        <goals>
+                            <goal>aar</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>exploded</id>
+                        <goals>
+                            <goal>exploded</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>deployaar</id>
+                        <goals>
+                            <goal>deployaar</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <aarDirectory>${project.build.directory}</aarDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

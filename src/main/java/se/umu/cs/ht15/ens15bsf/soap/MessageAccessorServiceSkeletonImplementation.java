@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by ens15bsf on 2015-11-13.
  */
-public class MessageAccessorService implements MessageAccessorServiceSkeletonInterface
+public class MessageAccessorServiceSkeletonImplementation implements MessageAccessorServiceSkeletonInterface
 {
   /**
    * Auto generated method signature
@@ -48,6 +48,7 @@ public class MessageAccessorService implements MessageAccessorServiceSkeletonInt
     List<String> topics = Storage.getInstance().listTopics();
     for ( String topic : topics )
       response.getListOfString().add( topic );
+    System.out.println(response.toString());
     return response;
   }
 
