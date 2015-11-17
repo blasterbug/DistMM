@@ -46,7 +46,7 @@
     </target>
 
     <!-- dist -->
-    <target name="dist" depends="generate-sources" description="generate distribution">
+    <target name="dist" depends="compile" description="generate distribution">
         <mkdir dir="${maven.build.dir}"/>
         <exec command="mvn package"/>
         <!-- service AAR -->
@@ -64,6 +64,7 @@
 
     <!-- deploy -->
     <target name="deploy" depends="aar" description="deploy service">
+        <exec command="echo ${env.AXIS2_HOME}/repository/services"/>
         <!-- copy service archive to repository -->
         <copy todir="${env.AXIS2_HOME}/repository/services">
             <fileset dir="${maven.build.dir}">
