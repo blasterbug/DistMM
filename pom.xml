@@ -182,7 +182,7 @@
                 <version>1.6.3</version>
                 <configuration>
                     <servicesXmlFile>${project.basedir}/target/aar/services.xml</servicesXmlFile>
-                    <aarName>5d157_ens15bsf_SOAP_service</aarName>
+                    <aarName>5dv157_ens15bsf_SOAP_service</aarName>
                     <includeDependencies>true</includeDependencies>
                     <fileSets>
                         <fileSet>

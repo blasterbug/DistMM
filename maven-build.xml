@@ -200,7 +200,9 @@
 
     <target name="compile" depends="get-deps" description="Compile the code">
         <mkdir dir="${maven.build.outputDir}"/>
+        <exec command="mvn axis2-wsdl2code:wsdl2code"/>
         <exec command="ant generate-sources"/>
+        <exec command="ant generate-resources"/>
         <javac destdir="${maven.build.outputDir}"
                encoding="UTF-8"
                nowarn="false"
