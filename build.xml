@@ -28,38 +28,36 @@
         <mkdir dir="${maven.build.dir}"/>
     </target>
 
+    <target name="wsdl2code" depends="get-deps">
+        <exec command="mvn axis2-wsdl2code:wsdl2code"/>
+    </target>
 
-    <target name="generate-resources" depends="get-deps">
+    <target name="generate-resources" depends="wsdl2code">
         <exec command="mvn axis2-wsdl2code:wsdl2code"/>
         <exec command="mvn generate-resources"/>
     </target>
 
-    <target name="generates-sources" depends="generate-resources">
+    <target name="generate-sources" depends="generate-resources">
         <exec command="mvn generate-sources"/>
     </target>
 
-    <!-- dist -->
-    <target name="dist" depends="generates-sources" description="generate distribution">
-        <mkdir dir="${maven.build.dir}"/>
-        <exec command="mvn package">
-        </exec>
-        <!-- service AAR -->
-        <copy todir="${maven.build.dir}/META-INF">
-            <fileset dir="${maven.build.resourceDir.0}">
+    <target name="explodeaar" depends="compile">
+        <exec command="mvn axis2-aar:exploded"/>
+    </target>
 
-                <include name="services.xml"/>
-            </fileset>
-            <fileset dir="${maven.build.wsdl}">
-                <include name="service.wsdl"/>
-            </fileset>
-        </copy>
+    <!-- dist -->
+    <target name="dist" depends="generate-sources" description="generate distribution">
+        <mkdir dir="${maven.build.dir}"/>
+        <exec command="mvn package"/>
+        <!-- service AAR -->
+        <exec command="mvn axis2-aar:aar"/>
         <jar jarfile="${maven.build.dir}" basedir="${.}"/>
         <!-- cleanup -->
         <delete dir="${maven.build.dir}"/>
     </target>
 
     <!-- deploy -->
-    <target name="aar" description="build aar service package">
+    <target name="aar" depends="explodeaar" description="build aar service package">
         <exec command="mvn axis2-aar:aar">
         </exec>
     </target>
