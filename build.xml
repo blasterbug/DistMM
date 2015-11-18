@@ -4,19 +4,10 @@
 <!-- Ant build file (http://ant.apache.org/) for Ant 1.6.2 or above.        -->
 <!-- ====================================================================== -->
 
-<project name="5dv153a1_ens15bsf" default="package" basedir=".">
+<project name="5dv153a1_ens15bsf" default="dist" basedir=".">
 
     <property environment="env"/>
-
-    <!-- ====================================================================== -->
-    <!-- Import maven-build.xml into the current project                        -->
-    <!-- ====================================================================== -->
-
-    <import file="maven-build.xml"/>
-
-    <!-- ====================================================================== -->
-    <!-- Help target                                                            -->
-    <!-- ====================================================================== -->
+    <property name="maven.build.dir" value="target"/>
 
     <target name="help">
         <echo message="Please run: $ant -projecthelp"/>
@@ -28,7 +19,7 @@
         <mkdir dir="${maven.build.dir}"/>
     </target>
 
-    <target name="wsdl2code" depends="get-deps">
+    <target name="wsdl2code">
         <exec command="mvn axis2-wsdl2code:wsdl2code"/>
     </target>
 
@@ -37,7 +28,7 @@
         <exec command="mvn generate-resources"/>
     </target>
 
-    <target name="generate-sources" depends="generate-resources">
+    <target name="generate-sources" depends="wsdl2code">
         <exec command="mvn generate-sources"/>
     </target>
 
@@ -45,8 +36,12 @@
         <exec command="mvn axis2-aar:exploded"/>
     </target>
 
+    <target name="compile" depends="wsdl2code">
+        <exec command="mvn compile" />
+    </target>
+
     <!-- dist -->
-    <target name="dist" depends="compile" description="generate distribution">
+    <target name="dist" depends="compile">
         <mkdir dir="${maven.build.dir}"/>
         <exec command="mvn package"/>
         <!-- service AAR -->
@@ -83,13 +78,39 @@
         </delete>
     </target>
 
-    <!-- clean -->
-    <target name="clean" description="clean up">
+    <target name="clean" description="Clean the output directory">
         <delete dir="${maven.build.dir}"/>
-        <delete file="${maven.build.dir}/aar"/>
-        <delete>
-            <fileset dir="." includes="**/*.tmp"/>
-        </delete>
+    </target>
+
+    <target name="package" depends="compile" description="Package the application">
+        <exec command="mvn package"/>
+    </target>
+
+    <!-- ====================================================================== -->
+    <!-- Javadoc target                                                         -->
+    <!-- ====================================================================== -->
+
+    <target name="javadoc" description="Generates the Javadoc of the application">
+        <javadoc sourcepath="src/main/java/"
+                 packagenames="*"
+                 destdir="doc/"
+                 access="protected"
+                 old="false"
+                 verbose="false"
+                 version="true"
+                 use="true"
+                 author="true"
+                 splitindex="false"
+                 nodeprecated="false"
+                 nodeprecatedlist="false"
+                 notree="false"
+                 noindex="false"
+                 nohelp="false"
+                 nonavbar="false"
+                 serialwarn="false"
+                 charset="ISO-8859-1"
+                 linksource="false"
+                 breakiterator="false"/>
     </target>
 
 </project>
