@@ -3,14 +3,14 @@
         xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
         xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://localhost:8080/axis2/services/MessageAccessorService/types/"
-        xmlns:ns="http://localhost:8080/axis2/services/MessageAccessorService/"
+        xmlns:tns="http://cs.umu.se/edu/soa/hws/stubs/types/"
+        xmlns:ns="http://cs.umu.se/edu/soa/hws/stubs/"
         name="MessageAccessorService"
-        targetNamespace="http://localhost:8080/axis2/services/MessageAccessorService/">
+        targetNamespace="http://cs.umu.se/edu/soa/hws/stubs/">
 
     <!-- ## types ## -->
     <wsdl:types>
-        <xsd:schema targetNamespace="http://localhost:8080/axis2/services/MessageAccessorService/types/">
+        <xsd:schema targetNamespace="http://cs.umu.se/edu/soa/hws/stubs/types/">
             <!-- String for topics name, messages ID and so on -->
             <xsd:element name="stringInput" type="xsd:string"/>
 
