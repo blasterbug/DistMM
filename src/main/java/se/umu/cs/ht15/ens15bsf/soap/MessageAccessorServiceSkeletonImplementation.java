@@ -1,8 +1,8 @@
 package se.umu.cs.ht15.ens15bsf.soap;
 
 import se.umu.cs._5dv153.interfaces.Message;
+import se.umu.cs.edu.soa.hws.stubs.types.*;
 import se.umu.cs.ht15.ens15bsf.Storage;
-import se.umu.cs.ht15.ens15bsf.soap.types.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,14 +10,13 @@ import java.util.List;
 /**
  * Created by ens15bsf on 2015-11-13.
  */
-public class MessageAccessorServiceSkeletonImplementation extends MessageAccessorServiceSkeleton implements MessageAccessorServiceSkeletonInterface
+public class MessageAccessorServiceSkeletonImplementation implements MessageAccessorServiceSkeletonInterface
 {
   /**
    * Auto generated method signature
    *
    * @param messageID
    */
-  @Override
   public MessageObjectDocument retrieveMessage ( StringInputDocument messageID )
   {
     Message msg = Storage.getInstance().retrieveMessage( messageID.getStringInput() );
@@ -41,7 +40,6 @@ public class MessageAccessorServiceSkeletonImplementation extends MessageAccesso
   /**
    * Auto generated method signature
    */
-  @Override
   public ListOfStringDocument listTopics ()
   {
     ListOfStringDocument response = ListOfStringDocument.Factory.newInstance();
@@ -57,7 +55,6 @@ public class MessageAccessorServiceSkeletonImplementation extends MessageAccesso
    *
    * @param topicName
    */
-  @Override
   public MapDocument listMessagesWithTimestamps ( StringInputDocument topicName )
   {
     MapDocument mapResponse = MapDocument.Factory.newInstance();
@@ -80,7 +77,6 @@ public class MessageAccessorServiceSkeletonImplementation extends MessageAccesso
   /**
    * Auto generated method signature
    */
-  @Override
   public void postMessage ( MessageObjectDocument message )
   {
     MessageObjectDocument.MessageObject msgObject = message.getMessageObject();
@@ -105,7 +101,6 @@ public class MessageAccessorServiceSkeletonImplementation extends MessageAccesso
    *
    * @param topicName
    */
-  @Override
   public ListOfStringDocument listMessages ( StringInputDocument topicName )
   {
     ListOfStringDocument response = ListOfStringDocument.Factory.newInstance();
