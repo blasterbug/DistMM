@@ -1,6 +1,7 @@
 package se.umu.cs.ht15.ens15bsf;
 
-import se.umu.cs.ht15.ens15bsf.soap.MessageAccessorServiceStub;
+
+import cs.edu.soa.hws.stubs.MessageAccessorServiceStub;
 
 import java.rmi.RemoteException;
 
