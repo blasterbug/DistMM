@@ -1,7 +1,7 @@
 package se.umu.cs.ht15.ens15bsf.soap;
 
 import org.apache.axis2.AxisFault;
-import org.apache.axis2.context.ConfigurationContext;
+import se.umu.cs.edu.soa.hws.stubs.MessageAccessorServiceStub;
 
 import java.rmi.RemoteException;
 import java.util.LinkedList;
