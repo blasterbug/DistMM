@@ -110,7 +110,7 @@
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
-                <directory>target/generated-sources/axis2/wsdl2code/resources</directory>
+                <directory>src/main/axis2/wsdl2code/resources</directory>
             </resource>
         </resources>
         <plugins>
@@ -182,7 +182,7 @@
                 <version>1.6.3</version>
                 <configuration>
                     <servicesXmlFile>${project.basedir}/target/aar/services.xml</servicesXmlFile>
-                    <aarName>5dv157_ens15bsf_SOAP_service</aarName>
+                    <aarName>${project.artifactId}</aarName>
                     <includeDependencies>true</includeDependencies>
                     <fileSets>
                         <fileSet>

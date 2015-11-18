@@ -8,6 +8,8 @@
 
     <property environment="env"/>
     <property name="maven.build.dir" value="target"/>
+    <property name="maven.src.dir" value="src/main/java"/>
+
 
     <target name="help">
         <echo message="Please run: $ant -projecthelp"/>
@@ -36,13 +38,16 @@
         <exec command="mvn axis2-aar:exploded"/>
     </target>
 
-    <target name="compile" depends="wsdl2code">
+    <target name="compile">
         <exec command="mvn compile" />
     </target>
 
     <!-- dist -->
-    <target name="dist" depends="compile">
+    <target name="dist" depends="compile,aar">
         <mkdir dir="${maven.build.dir}"/>
+        <copy tofile="${maven.build.dir}/generated-sources/axis2/wsdl2code/src/se/umu/cs/ht15/ens15bsf/soap/MessageAccessorServiceSkeleton.java">
+            <file file="${maven.src.dir}/se/umu/cs/ht15/ens15bsf/soap/MessageAccessorServiceSkeletonImplementation.java"/>
+        </copy>
         <exec command="mvn package"/>
         <!-- service AAR -->
         <exec command="mvn axis2-aar:aar"/>
@@ -58,7 +63,7 @@
     </target>
 
     <!-- deploy -->
-    <target name="deploy" depends="aar" description="deploy service">
+    <target name="deploy" description="deploy service">
         <exec command="echo ${env.AXIS2_HOME}/repository/services"/>
         <!-- copy service archive to repository -->
         <copy todir="${env.AXIS2_HOME}/repository/services">
