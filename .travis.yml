@@ -5,5 +5,5 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
 language: java
 compiler: javac
-before_script: mvn generate-sources
-script: mvn -e package
+before_script: ant wsdl2code
+script: ant dist
