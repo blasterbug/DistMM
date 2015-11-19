@@ -16,36 +16,36 @@ public interface MessageAccessorServiceSkeletonInterface {
      *
      * @param messageObject
      */
-    public void postMessage (
-            se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument messageObject );
+    public void postMessage(
+        se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument messageObject);
 
     /**
      * Auto generated method signature
      *
      * @param stringInput
      */
-    public se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument retrieveMessage (
-            se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput );
+    public se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument retrieveMessage(
+        se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput);
 
     /**
      * Auto generated method signature
      *
      */
-    public se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument listTopics ();
+    public se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument listTopics();
 
     /**
      * Auto generated method signature
      *
      * @param stringInput3
      */
-    public se.umu.cs.ht15.ens15bsf.soap.types.MapDocument listMessagesWithTimestamps (
-            se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput3 );
+    public se.umu.cs.ht15.ens15bsf.soap.types.MapDocument listMessagesWithTimestamps(
+        se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput3);
 
     /**
      * Auto generated method signature
      *
      * @param stringInput4
      */
-    public se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument listMessages (
-            se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput4 );
+    public se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument listMessages(
+        se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput4);
 }

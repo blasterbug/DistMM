@@ -149,7 +149,7 @@
         <!-- list of message binding -->
         <wsdl:operation name="listMessages">
             <soap:operation
-                    soapAction="http://se/umu/cs/ht15/ens15bsf/soap/listMessage"/>
+                    soapAction="http://localhost:8080/axis2/services/MessageAccessorService/listMessage"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>

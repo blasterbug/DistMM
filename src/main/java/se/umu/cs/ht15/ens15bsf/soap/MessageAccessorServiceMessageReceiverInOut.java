@@ -33,7 +33,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
                     "Operation is not located, if this is doclit style the SOAP-ACTION should specified via the SOAP Action to use the RawXMLProvider");
             }
 
-            String methodName;
+            java.lang.String methodName;
 
             if ((op.getName() != null) &&
                     ((methodName = org.apache.axis2.util.JavaUtils.xmlNameToJavaIdentifier(
@@ -110,12 +110,12 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
                                 "http://se/umu/cs/ht15/ens15bsf/soap",
                                 "listMessages"));
                 } else {
-                    throw new RuntimeException("method not found");
+                    throw new java.lang.RuntimeException("method not found");
                 }
 
                 newMsgContext.setEnvelope(envelope);
             }
-        } catch (Exception e) {
+        } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
@@ -141,7 +141,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
 
         try {
             return builder.getDocumentElement(true);
-        } catch (Exception e) {
+        } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
@@ -166,7 +166,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
 
         try {
             return builder.getDocumentElement(true);
-        } catch (Exception e) {
+        } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
@@ -191,7 +191,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
 
         try {
             return builder.getDocumentElement(true);
-        } catch (Exception e) {
+        } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
@@ -216,7 +216,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
 
         try {
             return builder.getDocumentElement(true);
-        } catch (Exception e) {
+        } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
@@ -272,7 +272,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
     }
 
     public org.apache.xmlbeans.XmlObject fromOM(
-        org.apache.axiom.om.OMElement param, Class type,
+        org.apache.axiom.om.OMElement param, java.lang.Class type,
         java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault {
         try {
             if (se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument.class.equals(
@@ -362,7 +362,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
                     return se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument.Factory.parse(param.getXMLStreamReaderWithoutCaching());
                 }
             }
-        } catch (Exception e) {
+        } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
 
@@ -385,7 +385,7 @@ public class MessageAccessorServiceMessageReceiverInOut extends org.apache.axis2
         return returnMap;
     }
 
-    private org.apache.axis2.AxisFault createAxisFault(Exception e) {
+    private org.apache.axis2.AxisFault createAxisFault(java.lang.Exception e) {
         org.apache.axis2.AxisFault f;
         Throwable cause = e.getCause();
 

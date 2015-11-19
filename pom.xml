@@ -141,8 +141,9 @@
                             <databindingName>xmlbeans</databindingName>
                             <syncMode>sync</syncMode>
                             <unpackClasses>true</unpackClasses>
-                            <generateServerSide>false</generateServerSide>
                             <generateServicesXml>true</generateServicesXml>
+                            <!-- Add this parameter to generate service classes -->
+                            <generateServerSide>false</generateServerSide>
                             <!-- Add this parameter to generate service interface -->
                             <generateServerSideInterface>false</generateServerSideInterface>
                         </configuration>
