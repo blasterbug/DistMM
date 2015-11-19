@@ -45,8 +45,9 @@ public class MessageAccessorServiceSkeleton implements MessageAccessorServiceSke
         ListOfStringDocument response = ListOfStringDocument.Factory.newInstance();
         List<String> topics = Storage.getInstance().listTopics();
         for ( String topic : topics )
-            response.getListOfString().add( topic );
-        //System.out.println(response.toString());
+             topics.add( topic );
+        response.setListOfString( topics );
+        System.out.println(response.toString());
         return response;
     }
 
