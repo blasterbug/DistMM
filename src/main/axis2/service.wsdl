@@ -3,14 +3,14 @@
         xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
         xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://cs.umu.se/edu/soa/hws/stubs/types/"
-        xmlns:ns="http://cs.umu.se/edu/soa/hws/stubs/"
+        xmlns:tns="http://se/umu/cs/ht15/ens15bsf/soap/types/"
+        xmlns:ns="http://se/umu/cs/ht15/ens15bsf/soap"
         name="MessageAccessorService"
-        targetNamespace="http://cs.umu.se/edu/soa/hws/stubs/">
+        targetNamespace="http://se/umu/cs/ht15/ens15bsf/soap">
 
     <!-- ## types ## -->
     <wsdl:types>
-        <xsd:schema targetNamespace="http://cs.umu.se/edu/soa/hws/stubs/types/">
+        <xsd:schema targetNamespace="http://se/umu/cs/ht15/ens15bsf/soap/types/">
             <!-- String for topics name, messages ID and so on -->
             <xsd:element name="stringInput" type="xsd:string"/>
 
@@ -149,7 +149,7 @@
         <!-- list of message binding -->
         <wsdl:operation name="listMessages">
             <soap:operation
-                    soapAction="http://cs.umu.se/5dv157/ht15/ens15bsf/soap/listMessage"/>
+                    soapAction="http://se/umu/cs/ht15/ens15bsf/soap/listMessage"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -161,7 +161,7 @@
         <!-- list messages with timestamps -->
         <wsdl:operation name="listMessagesWithTimestamps">
             <soap:operation
-                    soapAction="http://cs.umu.se/5dv157/ht15/ens15bsf/soap/listMessageWithTimestamps"/>
+                    soapAction="http://se/umu/cs/ht15/ens15bsf/soap/listMessageWithTimestamps"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -173,7 +173,7 @@
         <!-- list topics -->
         <wsdl:operation name="listTopics">
             <soap:operation
-                    soapAction="http://cs.umu.se/5dv157/ht15/ens15bsf/soap/listTopics"/>
+                    soapAction="http://se/umu/cs/ht15/ens15bsf/soap/listTopics"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -185,7 +185,7 @@
         <!-- post messages -->
         <wsdl:operation name="postMessage">
             <soap:operation
-                    soapAction="http://cs.umu.se/5dv157/ht15/ens15bsf/soap/postMessage"/>
+                    soapAction="http://se/umu/cs/ht15/ens15bsf/soap/postMessage"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -197,7 +197,7 @@
         <!-- retrieve message -->
         <wsdl:operation name="retrieveMessage">
             <soap:operation
-                    soapAction="http://cs.umu.se/5dv157/ht15/ens15bsf/soap/retrieveMessage"/>
+                    soapAction="http://se/umu/cs/ht15/ens15bsf/soap/retrieveMessage"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -212,7 +212,7 @@
     <wsdl:service name="MessageAccessorService">
         <wsdl:port binding="ns:MessageAccessorHTTPBinding" name="MessageAccessorServiceSOAP">
             <soap:address
-                    location="http://localhost:8080/axis2/services/MessageAccessor"/>
+                    location="http://localhost:8080/axis2/services/MessageAccessorService"/>
         </wsdl:port>
     </wsdl:service>
 

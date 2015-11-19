@@ -132,23 +132,19 @@
                 <version>1.6.3</version>
                 <executions>
                     <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
                         <goals>
                             <goal>wsdl2code</goal>
                         </goals>
                         <configuration>
-                            <packageName>se.umu.cs.ht15.ens15bsf.soap</packageName>
+                            <!--<packageName>se.umu.cs.ht15.ens15bsf.soap</packageName>-->
                             <!-- <wsdlFile>src/main/wsdl/MessageAccessorService.wsdl</wsdlFile> -->
                             <databindingName>xmlbeans</databindingName>
                             <syncMode>sync</syncMode>
                             <unpackClasses>true</unpackClasses>
-                            <generateServerSide>true</generateServerSide>
+                            <generateServerSide>false</generateServerSide>
                             <generateServicesXml>true</generateServicesXml>
                             <!-- Add this parameter to generate service interface -->
-                            <generateServerSideInterface>true</generateServerSideInterface>
+                            <generateServerSideInterface>false</generateServerSideInterface>
                         </configuration>
                     </execution>
                 </executions>
@@ -167,13 +163,7 @@
                 <configuration>
                     <grammars>java.g</grammars>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
+
             </plugin>
 
             <plugin>
@@ -181,15 +171,13 @@
                 <artifactId>axis2-aar-maven-plugin</artifactId>
                 <version>1.6.3</version>
                 <configuration>
-                    <servicesXmlFile>${project.basedir}/target/aar/services.xml</servicesXmlFile>
-                    <aarName>${project.artifactId}</aarName>
+                    <servicesXmlFile>${project.basedir}/target/generated-sources/axis2/wsdl2code/resources/services.xml</servicesXmlFile>
                     <includeDependencies>true</includeDependencies>
                     <fileSets>
                         <fileSet>
                             <directory>src/main/axis2</directory>
                             <outputDirectory>META-INF</outputDirectory>
                             <includes>
-                                <include>target/aar/services.xml</include>
                                 <include>**/*.xml</include>
                                 <include>**/*.xsd</include>
                                 <include>**/*.wsdl</include>

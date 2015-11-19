@@ -6,45 +6,46 @@
  */
 package se.umu.cs.ht15.ens15bsf.soap;
 
+
 /**
- * MessageAccessorServiceSkeletonInterface java skeleton interface for the axisService
+ *  MessageAccessorServiceSkeletonInterface java skeleton interface for the axisService
  */
-public interface MessageAccessorServiceSkeletonInterface
-{
-  /**
-   * Auto generated method signature
-   *
-   * @param stringInput
-   */
-  public se.umu.cs.edu.soa.hws.stubs.types.MessageObjectDocument retrieveMessage (
-          se.umu.cs.edu.soa.hws.stubs.types.StringInputDocument stringInput );
+public interface MessageAccessorServiceSkeletonInterface {
+    /**
+     * Auto generated method signature
+     *
+     * @param messageObject
+     */
+    public void postMessage (
+            se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument messageObject );
 
-  /**
-   * Auto generated method signature
-   *
-   * @param messageObject0
-   */
-  public void postMessage (
-          se.umu.cs.edu.soa.hws.stubs.types.MessageObjectDocument messageObject0 );
+    /**
+     * Auto generated method signature
+     *
+     * @param stringInput
+     */
+    public se.umu.cs.ht15.ens15bsf.soap.types.MessageObjectDocument retrieveMessage (
+            se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput );
 
-  /**
-   * Auto generated method signature
-   */
-  public se.umu.cs.edu.soa.hws.stubs.types.ListOfStringDocument listTopics ();
+    /**
+     * Auto generated method signature
+     *
+     */
+    public se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument listTopics ();
 
-  /**
-   * Auto generated method signature
-   *
-   * @param stringInput3
-   */
-  public se.umu.cs.edu.soa.hws.stubs.types.MapDocument listMessagesWithTimestamps (
-          se.umu.cs.edu.soa.hws.stubs.types.StringInputDocument stringInput3 );
+    /**
+     * Auto generated method signature
+     *
+     * @param stringInput3
+     */
+    public se.umu.cs.ht15.ens15bsf.soap.types.MapDocument listMessagesWithTimestamps (
+            se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput3 );
 
-  /**
-   * Auto generated method signature
-   *
-   * @param stringInput4
-   */
-  public se.umu.cs.edu.soa.hws.stubs.types.ListOfStringDocument listMessages (
-          se.umu.cs.edu.soa.hws.stubs.types.StringInputDocument stringInput4 );
+    /**
+     * Auto generated method signature
+     *
+     * @param stringInput4
+     */
+    public se.umu.cs.ht15.ens15bsf.soap.types.ListOfStringDocument listMessages (
+            se.umu.cs.ht15.ens15bsf.soap.types.StringInputDocument stringInput4 );
 }

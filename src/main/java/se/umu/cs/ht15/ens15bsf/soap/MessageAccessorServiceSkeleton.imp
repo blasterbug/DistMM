@@ -1,8 +1,9 @@
 package se.umu.cs.ht15.ens15bsf.soap;
 
 import se.umu.cs._5dv153.interfaces.Message;
+import se.umu.cs.ht15.ens15bsf.soap.MessageAccessorServiceSkeletonInterface;
+import se.umu.cs.edu.soa.hws.stubs.types.*;
 import se.umu.cs.ht15.ens15bsf.Storage;
-import se.umu.cs.ht15.ens15bsf.soap.types.*;
 
 import java.util.HashMap;
 import java.util.List;

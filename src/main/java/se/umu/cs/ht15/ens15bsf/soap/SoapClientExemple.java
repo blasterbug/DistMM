@@ -1,7 +1,6 @@
 package se.umu.cs.ht15.ens15bsf.soap;
 
 import org.apache.axis2.AxisFault;
-import se.umu.cs.edu.soa.hws.stubs.MessageAccessorServiceStub;
 
 import java.rmi.RemoteException;
 import java.util.LinkedList;
@@ -16,14 +15,14 @@ public class SoapClientExemple
 
   public SoapClientExemple () throws AxisFault
   {
-    serviceStub = new MessageAccessorServiceStub(  );
+    serviceStub = new MessageAccessorServiceStub();
   }
 
-  public List<String> listTopics() throws RemoteException
+  public List<String> listTopics () throws RemoteException
   {
     MessageAccessorServiceStub.ListOfString ids = serviceStub.listTopics();
     List<String> topics = new LinkedList<>();
-    for ( String topicName : ids.getListOfString().getString() )
+    for ( String topicName: ids.getListOfString().getString() )
       topics.add( topicName );
     return topics;
   }
