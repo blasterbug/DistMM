@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by ens15bsf on 2015-11-10.
  */
-public class TestServerREST
+public class RunServerREST
 {
   public static void main ( String[] args )
   {
