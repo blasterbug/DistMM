@@ -1,2 +1,27 @@
 \section{SOAP vs REST}
-input{soapVSrest.tex}
+
+\paragraph{SOAP}{
+    To use SOAP, we need an external component, a server. In fact with SOAP,
+ we create a service, so we need a server to run it. SOAP needs some extra
+ software, usually Apache Axis, to run. But we can automatically generate
+ the source code and the skeleton of the different classes of the service
+ for the client as well as for the server. So, such services can be used
+ and discovered automatically by other pieces of software as long as we
+ know where the services are available.
+}
+
+\paragraph{REST}{
+    For REST-let, I use an API, \texttt{RESTlet} so we don't need extra
+ software to run our server, only a library. But each time we want to
+ add functionality to the server, we need to edit the code. That may
+ be quite tedious regarding the existing code and so complex. As we decide
+ how to use HTTP, we need create and to publish a documentation of the service
+ to make it usable by other developers.
+}
+
+\paragraph{}{
+    To sum up, contrary to SOAP, a REST server doesn't need much software
+ to work and it is easier to use but it is harder to discover such service
+ automatically. So, SOAP is heavier to use but it can be deployed and discovered
+ and used (almost) automatically.
+}
