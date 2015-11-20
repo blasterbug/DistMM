@@ -3,32 +3,89 @@
 \subsection{REST server}
 
 \paragraph{}{
-	A REST-let server is a software that handle HTTP requests to exchange data. Mainly four
- statements of the HTTP protocol is : \texttt{GET}, \texttt{POST}, \texttt{PUT} and
- \texttt{DELETE}. REST doesn't specify how to use it, so below I detail how I implement my
- REST server and specify the different requests handled. To exchange the data, I use JSON
- documents.
+    A REST-let server is a software that handle HTTP requests to exchange data.
+ Mainly four statements of the HTTP protocol is : \texttt{GET}, \texttt{POST},
+ \texttt{PUT} and \texttt{DELETE}. REST doesn't specify how to use it, so below 
+ I detail how I implement my REST server and specify the different requests 
+ handled. To exchange the data, I use JSON documents.
 }
 
-\subsubsection{Used protocol}
+\paragraph{\texttt{GET} requests and replies}{
+    To get the list of topics, the messages of a topic and a message, I use 
+ \texttt{GET} request as describe below.
+}
 
-
-\begin{tabular}{|c|c|c|}
-\hline 
-Operation & Collection URI & Member URI \\ 
-\hline 
-GET & topic & • \\ 
-GET & messages topicname & • \\ 
-\hline 
-PUT & • & • \\ 
-\hline 
-POST & • & • \\ 
+\begin{tabular}{|c|c|p{4.3cm}|p{3.4cm}|}
 \hline
-DELETE & & \\
-\hline 
-\end{tabular} 
+\# & Request & keyword & action \\
+\hline
+1 & \texttt{GET} & \texttt{TOPICS} & get list of topics names \\
+\hline
+2 & \texttt{GET} & \texttt{MESSAGES} \& \texttt{TOPIC\_NAME} & get list of message about a topic \\
+\hline
+3 & \texttt{GET} & \texttt{MESSAGES\_WITH\_TIMESTAMPS} \& \texttt{TOPIC\_NAME} & get list of messages with their time-stamps \\
+\hline
+4 & \texttt{GET} & \texttt{MESSAGE} \& \texttt{MESAGE\_ID} & get a message \\
+\hline
+\end{tabular}
+
+\paragraph{}{
+    Replies are JSON documents containing the requested data. If there is no
+ data suitable (or if there is an error) on the server, empty documents are 
+ send. The table below describe the return JSON values regarding the request.
+}
+
+
+\begin{tabular}{|c|c|p{2cm}|p{2cm}|p{3cm}|}
+\hline
+\# & JSON type & JSON keys & type & description \\
+\hline
+1 & list & & \texttt{string} & name of topics \\
+\hline
+2 & list & & \texttt{string} & list of messages IDs about a topic \\
+\hline
+3 & collection & \texttt{key} \& \texttt{value} & \texttt{string} \& \texttt{long} & map of messages : message ID $\rightarrow$ time-stamp, about a topic \\
+\hline
+4 & object & \texttt{ID}, \texttt{SENDER}, \texttt{TOPIC}, \texttt{TIMESTAMP}, \texttt{CONTENT} & \texttt{TIMESTAMP} is a \texttt{long}, \texttt{string} for all & a message \\
+\hline
+\end{tabular}
+
+\paragraph{\texttt{POST} request and reply}{
+    To send a message to the server, I use the \texttt{POST} method. The object
+ send to the server is the same as the one received when a client asks for a
+ message. The query send by the client contains two values : \texttt{POST} and 
+ \texttt{MESSAGE} which is the message in a JSON document.
+}
+
+\paragraph{}{
+    I did not implement the messages attachments but the REST server and the
+ client object (to implement the my protocol) are totally functional. To run the
+ REST server simply run the class \texttt{RunServerREST} class from the jar file
+ produce by the ant build. A client can be easily implemented by using the 
+ \texttt{RestClient} class included in the jar file. An example of such a client
+ is also include in the jar file named \texttt{TestClientRest}.
+}
 
 \subsection{SOAP service}
 
-\subsubsection{}
+\paragraph{}{
+    A SOAP service is basically an \texttt{aar} file loaded by the Apache Axis 
+ server. Such a service can be development by generating the code of the server 
+ and the client from a \texttt{WSDL} file or by generating the \texttt{WSDL}
+ from java classes representing the messages exchange between a SOAP client and
+ a SOAP server. I decided, as shown during the tutorial, to generate the Java 
+ code from a \texttt{WSDL file}. To do so, I specified the types I used and the
+ messages exchanged for each requests. The full \texttt{WSDL} file can be found 
+ at appendix \ref{app:wsdl}.
+}
+
+\paragraph{}{
+    Unfortunately, I spend a lot time trying to fix an issue I got, the Axis 
+ server load the service but was unable to find the right classes despite the
+ fact they all are in the \texttt{aar} artifact. Finally, I fixed the problem
+ by changing the packages name. But I still have an error coming from my server
+ and the way I create the different request. So, for now, my service runs but it
+ can't be used since I have to fix and figure out how I can create \texttt{XML}
+ replies with the types I specify in the \texttt{WSDL} file.
+}
 
