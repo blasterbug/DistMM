@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:17:49 BST) --><serviceGroup>
+    <service name="MessageAccessorService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="se.umu.cs.ht15.ens15bsf.soap.MessageAccessorServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">se.umu.cs.ht15.ens15bsf.soap.MessageAccessorServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="postMessage" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://se/umu/cs/ht15/ens15bsf/soap">
+            <actionMapping>http://se/umu/cs/ht15/ens15bsf/soap/postMessage</actionMapping>
+            <outputActionMapping>http://se/umu/cs/ht15/ens15bsf/soap/MessageAccessorPort/postMessageResponse</outputActionMapping>
+        </operation>
+        <operation name="retrieveMessage" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://se/umu/cs/ht15/ens15bsf/soap">
+            <actionMapping>http://se/umu/cs/ht15/ens15bsf/soap/retrieveMessage</actionMapping>
+            <outputActionMapping>http://se/umu/cs/ht15/ens15bsf/soap/MessageAccessorPort/retrieveMessageResponse</outputActionMapping>
+        </operation>
+        <operation name="listTopics" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://se/umu/cs/ht15/ens15bsf/soap">
+            <actionMapping>http://se/umu/cs/ht15/ens15bsf/soap/listTopics</actionMapping>
+            <outputActionMapping>http://se/umu/cs/ht15/ens15bsf/soap/MessageAccessorPort/listTopicsResponse</outputActionMapping>
+        </operation>
+        <operation name="listMessagesWithTimestamps" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://se/umu/cs/ht15/ens15bsf/soap">
+            <actionMapping>http://se/umu/cs/ht15/ens15bsf/soap/listMessageWithTimestamps</actionMapping>
+            <outputActionMapping>http://se/umu/cs/ht15/ens15bsf/soap/MessageAccessorPort/listMessagesWithTimestampsResponse</outputActionMapping>
+        </operation>
+        <operation name="listMessages" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://se/umu/cs/ht15/ens15bsf/soap">
+            <actionMapping>http://localhost:8080/axis2/services/MessageAccessorService/listMessage</actionMapping>
+            <outputActionMapping>http://se/umu/cs/ht15/ens15bsf/soap/MessageAccessorPort/listMessagesResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
