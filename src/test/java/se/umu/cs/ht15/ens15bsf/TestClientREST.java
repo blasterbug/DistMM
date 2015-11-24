@@ -1,7 +1,7 @@
 package se.umu.cs.ht15.ens15bsf;
 
 import se.umu.cs._5dv153.interfaces.Message;
-import se.umu.cs.ht15.ens15bsf.rest.RestClient;
+import se.umu.cs.ht15.ens15bsf.rest.clients.RestClient;
 import se.umu.cs.ht15.ens15bsf.rest.RestServer;
 
 import java.io.IOException;
