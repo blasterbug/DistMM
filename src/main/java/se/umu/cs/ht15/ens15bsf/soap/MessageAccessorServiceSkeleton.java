@@ -3,6 +3,9 @@ package se.umu.cs.ht15.ens15bsf.soap;
 import se.umu.cs._5dv153.interfaces.Message;
 import se.umu.cs.ht15.ens15bsf.Storage;
 import se.umu.cs.ht15.ens15bsf.soap.types.*;
+import se.umu.cs.ht15.ens15bsf.soap.types.impl.ListOfStringDocumentImpl;
+import se.umu.cs.ht15.ens15bsf.soap.types.impl.MapDocumentImpl;
+import se.umu.cs.ht15.ens15bsf.soap.types.impl.MapItemImpl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,12 +45,17 @@ public class MessageAccessorServiceSkeleton implements MessageAccessorServiceSke
      */
     public ListOfStringDocument listTopics ()
     {
-        ListOfStringDocument response = ListOfStringDocument.Factory.newInstance();
+        ListOfStringDocument response = new ListOfStringDocumentImpl( null );
         List<String> topics = Storage.getInstance().listTopics();
-        for ( String topic : topics )
-             topics.add( topic );
-        response.setListOfString( topics );
-        System.out.println(response.toString());
+        //System.out.println("something");
+        //List<String> topics = Storage.listOfTopics();
+       for ( String topic : topics )
+        {
+            response.getListOfString().add( topic );
+            System.out.println(topic);
+
+        }
+        response.getListOfString().add( "something" );
         return response;
     }
 
@@ -58,13 +66,13 @@ public class MessageAccessorServiceSkeleton implements MessageAccessorServiceSke
      */
     public MapDocument listMessagesWithTimestamps ( StringInputDocument topicName )
     {
-        MapDocument mapResponse = MapDocument.Factory.newInstance();
+        MapDocument mapResponse = new MapDocumentImpl( null );
         HashMap<String, Long> idsTimed = Storage.getInstance().listMessagesWithTimestamps( topicName.getStringInput() );
         String[] keys = (String[])idsTimed.keySet().toArray();
         Long[] values = (Long[])idsTimed.values().toArray();
         for ( int i = 0 ; i < idsTimed.keySet().size() ; i++ )
         {
-            MapItem itemI = MapItem.Factory.newInstance();
+            MapItem itemI = new MapItemImpl( null );
             itemI.setKey( keys[i] );
             itemI.setValue( values[i] );
             /// DEBUG MESSAGES
@@ -104,7 +112,7 @@ public class MessageAccessorServiceSkeleton implements MessageAccessorServiceSke
      */
     public ListOfStringDocument listMessages ( StringInputDocument topicName )
     {
-        ListOfStringDocument response = ListOfStringDocument.Factory.newInstance();
+        ListOfStringDocument response =  new ListOfStringDocumentImpl( null );
         List<String> listMsg = Storage.getInstance().listMessages( topicName.getStringInput() );
         for ( String id : listMsg )
             response.getListOfString().add( id );
