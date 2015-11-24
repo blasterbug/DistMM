@@ -5,4 +5,5 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
 language: java
 compiler: javac
+before-script: ant compile
 script: ant dist
