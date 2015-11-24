@@ -20,7 +20,16 @@ public class ResourceMessage extends ServerResource
     Storage storage = Storage.getInstance();
     // if the request contains an ID
     if ( null != argData )
-      return storage.retrieveMessage( argData ).toString();
+    {
+      try
+      {
+        return JsonAgent.toJson( storage.retrieveMessage( argData ) ).toString();
+      }
+      catch ( NullPointerException e )
+      {
+        return "Wrong message ID";
+      }
+    }
     else
       return "Unkown request";
   }

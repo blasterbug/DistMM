@@ -3,6 +3,7 @@ package se.umu.cs.ht15.ens15bsf.rest.resources;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 import se.umu.cs.ht15.ens15bsf.Storage;
+import se.umu.cs.ht15.ens15bsf.rest.JsonAgent;
 
 import static se.umu.cs.ht15.ens15bsf.rest.ServerKeywords.*;
 import static se.umu.cs.ht15.ens15bsf.rest.ServerKeywords.TOPIC_NAME;
@@ -26,12 +27,12 @@ public class ResourceMessages extends ServerResource
       if ( null != timestamp )
       {
         // return a map id -> timestamp
-        return messages.listMessagesWithTimestamps( topicName ).toString();
+        return JsonAgent.toJson( messages.listMessagesWithTimestamps( topicName ) ).toString();
       }
       else
       {
         // return the list of messages regarding the topic
-        return messages.listMessages( topicName ).toString();
+        return JsonAgent.toJson( messages.listMessages( topicName ) ).toString();
       }
     }
     else
