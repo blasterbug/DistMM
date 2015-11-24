@@ -78,7 +78,10 @@ public class JsonAgent
     objectBuilder.add( TOPIC, msg.getTopic() );
     objectBuilder.add( TIMESTAMP, msg.getTimestamp() );
     objectBuilder.add( CONTENT, msg.getContent() );
-    //objectBuilder.add( ATTACHMENTS, toJson( msg.getAttachments() ) );
+    if ( null != msg.getAttachments() )
+    {
+      objectBuilder.add( ATTACHMENTS, toJson( msg.getAttachments() ) );
+    }
     return objectBuilder.build();
   }
 
@@ -93,14 +96,35 @@ public class JsonAgent
     JsonReader jsonReader = Json.createReader( new StringReader( arg ) );
     JsonObject msgValues = jsonReader.readObject();
     jsonReader.close();
-    return
-            new Message(
-                    msgValues.getString( ID ),
-                    msgValues.getString( SENDER ),
-                    msgValues.getString( TOPIC ),
-                    msgValues.getJsonNumber( TIMESTAMP ).longValue(),
-                    msgValues.getString( CONTENT )
-            );
+    if ( null == msgValues.getJsonArray( ATTACHMENTS ) )
+    {
+      return
+              new Message(
+                      msgValues.getString( ID ),
+                      msgValues.getString( SENDER ),
+                      msgValues.getString( TOPIC ),
+                      msgValues.getJsonNumber( TIMESTAMP ).longValue(),
+                      msgValues.getString( CONTENT )
+              );
+    }
+    else
+    {
+      JsonArray attachmentsJson = msgValues.getJsonArray( ATTACHMENTS );
+      Byte[] attachmentByte = new Byte[attachmentsJson.size()];
+      for ( int i = 0; i < attachmentByte.length; i++ )
+      {
+        attachmentByte[i] = Byte.valueOf( attachmentsJson.getString( i ) );
+      }
+      return
+              new Message(
+                      msgValues.getString( ID ),
+                      msgValues.getString( SENDER ),
+                      msgValues.getString( TOPIC ),
+                      msgValues.getJsonNumber( TIMESTAMP ).longValue(),
+                      msgValues.getString( CONTENT ),
+                      attachmentByte
+              );
+    }
   }
 }
 
