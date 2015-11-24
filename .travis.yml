@@ -5,8 +5,5 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
 language: java
 compiler: javac
-before_script:
- - ant wsdl2code
- - ant generate-sources
- - ant generate-resources
+before_script: ant wsdl2code && ant generate-sources && ant generate-resources
 script: ant dist
