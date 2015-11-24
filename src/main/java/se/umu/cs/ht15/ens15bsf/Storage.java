@@ -45,6 +45,11 @@ public class Storage implements MessageAccessor
     return new LinkedList<>( topics );
   }
 
+  public static List<String> listOfTopics ()
+  {
+    return null;
+  }
+
   /**
    * Stores the message on the server.
    *
