@@ -38,7 +38,7 @@
         <exec command="mvn axis2-aar:exploded"/>
     </target>
 
-    <target name="compile">
+    <target name="compile" depends="generate-sources, generate-resources">
         <!--
         <copy tofile="${maven.build.dir}/generated-sources/axis2/wsdl2code/src/se/umu/cs/edu/soa/hws/stubs/MessageAccessorServiceSkeleton.java">
             <file file="src/main/java/se/umu/cs/ht15/ens15bsf/soap/MessageAccessorServiceSkeleton.imp"/>
