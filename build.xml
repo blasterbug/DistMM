@@ -94,6 +94,10 @@
         <exec command="mvn package"/>
     </target>
 
+    <target name="test" depends="compile" description="testing build">
+        <exec command="mvn verify"/>
+    </target>
+
     <!-- ====================================================================== -->
     <!-- Javadoc target                                                         -->
     <!-- ====================================================================== -->
