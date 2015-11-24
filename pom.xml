@@ -172,7 +172,7 @@
                 <artifactId>axis2-aar-maven-plugin</artifactId>
                 <version>1.6.3</version>
                 <configuration>
-                    <servicesXmlFile>${project.basedir}/target/generated-sources/axis2/wsdl2code/resources/services.xml</servicesXmlFile>
+                    <servicesXmlFile>src/main/axis2/services.xml</servicesXmlFile>
                     <includeDependencies>true</includeDependencies>
                     <fileSets>
                         <fileSet>
